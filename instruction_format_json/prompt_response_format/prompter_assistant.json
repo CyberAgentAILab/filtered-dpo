@@ -1,0 +1,5 @@
+{
+    "prompt": "<|prompter|>{prompt}<|endoftext|> <|assistant|>",
+    "response": "{response}",
+    "prompt_response": "<|prompter|>{prompt}<|endoftext|> <|assistant|>{response}"
+}

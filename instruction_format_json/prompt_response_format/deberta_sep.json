@@ -1,0 +1,5 @@
+{
+    "prompt": "{prompt} [SEP] ",
+    "response": "{response}",
+    "prompt_response": "{prompt} [SEP] {response}"
+}

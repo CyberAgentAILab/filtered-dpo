@@ -1,0 +1,6 @@
+output/
+*.pyc
+.env
+.DS_Store
+.ipynb_checkpoints
+.venv/
