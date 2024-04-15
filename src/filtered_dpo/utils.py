@@ -4,10 +4,9 @@ from typing import List, Literal, Optional
 
 import numpy as np
 from datasets import concatenate_datasets, load_dataset
+from transformers import AutoModelForCausalLM, AutoModelForSequenceClassification, AutoTokenizer, pipeline
+
 from .reward_model import GPTNeoXRewardModel
-from transformers import (AutoModelForCausalLM,
-                          AutoModelForSequenceClassification, AutoTokenizer,
-                          pipeline)
 
 logger = logging.getLogger(__name__)
 

@@ -2,19 +2,18 @@ import copy
 import logging
 import os
 
-from . import evaluation
 import numpy as np
 import torch
-from . import utils
 from tqdm import tqdm
 from transformers import TrainerCallback, pipeline
 from transformers.integrations import MLflowCallback
 from transformers.trainer_callback import TrainerControl, TrainerState
 from transformers.training_args import TrainingArguments
-from trl import (AutoModelForCausalLMWithValueHead, DPOTrainer, PPOConfig,
-                 PPOTrainer)
+from trl import AutoModelForCausalLMWithValueHead, DPOTrainer, PPOConfig, PPOTrainer
 from trl.core import logprobs_from_logits
 from trl.trainer.utils import pad_to_length
+
+from . import evaluation, utils
 
 logger = logging.getLogger(__name__)
 

@@ -5,8 +5,7 @@ from typing import Literal, Optional
 import torch
 import torch.nn as nn
 from transformers import AutoConfig, AutoModelForSequenceClassification
-from transformers.models.gpt_neox.modeling_gpt_neox import (
-    GPTNeoXConfig, GPTNeoXModel, GPTNeoXPreTrainedModel)
+from transformers.models.gpt_neox.modeling_gpt_neox import GPTNeoXConfig, GPTNeoXModel, GPTNeoXPreTrainedModel
 from transformers.utils import ModelOutput
 
 logger = logging.getLogger(__name__)

@@ -10,11 +10,14 @@ from accelerate import Accelerator
 from datasets import Dataset, load_dataset
 from torch.utils.data import DataLoader
 from tqdm import tqdm
-from transformers import (AutoModelForCausalLM,
-                          AutoModelForSequenceClassification, AutoTokenizer,
-                          HfArgumentParser, pipeline)
-from trl import (AutoModelForCausalLMWithValueHead, DPOTrainer, PPOConfig,
-                 PPOTrainer)
+from transformers import (
+    AutoModelForCausalLM,
+    AutoModelForSequenceClassification,
+    AutoTokenizer,
+    HfArgumentParser,
+    pipeline,
+)
+from trl import AutoModelForCausalLMWithValueHead, DPOTrainer, PPOConfig, PPOTrainer
 from trl.core import logprobs_from_logits
 from trl.trainer.utils import pad_to_length
 
@@ -29,9 +32,10 @@ class ScriptArguments:
     """
     The arguments for the fDPO training script.
     """
+
     policy_model_path: str = field(
         default="Mitsuki-Sakamoto/pythia_160m_alpaca_farm_instructions_sft_constant_pa_seed_1",
-        metadata={"help": "the path to the policy model"}
+        metadata={"help": "the path to the policy model"},
     )
     policy_model_subfolder: str = field(default="", metadata={"help": "the subpath to the policy model"})
     dataset_train_path: str = field(
@@ -48,9 +52,13 @@ class ScriptArguments:
     )
     dataset_train_percentage: float = field(default=100, metadata={"help": "the percentage of the dataset to use"})
     test_size: float = field(default=0.05, metadata={"help": "the test size for the train test split"})
-    
-    dataset_eval_prompt_path: Optional[str] = field(default="tatsu-lab/alpaca_farm", metadata={"help": "the path to the prompt dataset"})
-    dataset_eval_prompt_name: Optional[str] = field(default="alpaca_instructions", metadata={"help": "the name of the prompt dataset"})
+
+    dataset_eval_prompt_path: Optional[str] = field(
+        default="tatsu-lab/alpaca_farm", metadata={"help": "the path to the prompt dataset"}
+    )
+    dataset_eval_prompt_name: Optional[str] = field(
+        default="alpaca_instructions", metadata={"help": "the name of the prompt dataset"}
+    )
     dataset_eval_prompt_percentage: float = field(
         default=100, metadata={"help": "the number of examples of the dataset to use"}
     )
