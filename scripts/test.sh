@@ -65,4 +65,6 @@ poetry run python -m filtered_dpo \
 --report_to tensorboard \
 ${FDPO_OPTIONS}
 "
+
+echo $COMMAND
 $COMMAND

@@ -2,7 +2,7 @@
 set -eu
 
 # please change the seed
-seed=1
+seed=${1:-1}
 # different from 1.4b
 DATASET_PATH="Mitsuki-Sakamoto/fdpo-preference-dataset"
 DATASET_NAME="160m_mix_seed${seed}"
@@ -29,7 +29,7 @@ FDPO_OPTIONS="\
 
 COMMAND="\
 poetry run python -m filtered_dpo \
---policy_model_path ${POLICY_MODEL} \
+--policy_model_path ${MODEL_PATH} \
 --policy_model_subfolder ${POLICY_MODEL_SUBFOLDER} \
 --prompt_response_format_json instruction_format_json/prompt_response_format/prompter_assistant.json \
 --prompt_format_json instruction_format_json/alpaca_farm_prompt_format/ln.json \
@@ -65,4 +65,6 @@ poetry run python -m filtered_dpo \
 --data_seed $seed \
 ${FDPO_OPTIONS} \
 "
+
+echo $COMMAND
 $COMMAND
