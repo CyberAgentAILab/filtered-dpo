@@ -248,7 +248,6 @@ class FilterTrainDatasetCallback(TrainerCallback):
                 sum_max_steps = getattr(self.state, name) + item
                 setattr(self.state, name, sum_max_steps)
             setattr(state, name, getattr(self.state, name))
-        logger.info(f"loaded state: {state}")
 
     def _save_state(self, state):
         self.state = copy.deepcopy(state)
