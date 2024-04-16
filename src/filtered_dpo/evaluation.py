@@ -160,7 +160,7 @@ def __prepare_inputs_padding(prompts, responses, tokenizer, pad_value, label_pad
     return input_ids_padded, attention_mask_padded, labels_padded
 
 
-# TODO : add reference
+# https://github.com/huggingface/trl/blob/a78a05d7b76eb1b4dade9c5c1d4704cceaf8a5b1/trl/trainer/dpo_trainer.py#L459
 def _get_batch_logps(
     logits: torch.FloatTensor,
     labels: torch.LongTensor,

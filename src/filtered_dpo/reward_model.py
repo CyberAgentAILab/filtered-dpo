@@ -11,7 +11,7 @@ from transformers.utils import ModelOutput
 logger = logging.getLogger(__name__)
 
 
-# TODO: add reference to the original source
+# https://github.com/LAION-AI/Open-Assistant/blob/main/model/model_training/models/reward_model.py
 class GPTNeoXRewardModelConfig(GPTNeoXConfig):
     model_type = "gpt_neox_reward_model"
 
