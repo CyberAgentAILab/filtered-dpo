@@ -81,6 +81,7 @@ class ScriptArguments:
     proxy_reward_model_path: Optional[str] = field(
         default=None, metadata={"help": "the path to the proxy reward model"}
     )
+    proxy_reward_model_subfolder: str = field(default="", metadata={"help": "the subpath to the proxy reward model"})
     proxy_reward_model_format_json: Optional[str] = field(
         default=None, metadata={"help": "the json file to format for the reward model"}
     )
@@ -89,6 +90,7 @@ class ScriptArguments:
         metadata={"help": "the type of the gold reward model"},
     )
     gold_reward_model_path: Optional[str] = field(default=None, metadata={"help": "the path to the gold reward model"})
+    gold_reward_model_subfolder: str = field(default="", metadata={"help": "the subpath to the gold reward model"})
     gold_reward_model_format_json: Optional[str] = field(
         default=None, metadata={"help": "the json file to format for the reward model"}
     )
@@ -168,25 +170,25 @@ def main(args: Optional[List[str]] = None) -> None:
     logger.info(f"Parsed Training Args {training_args}")
     logger.info(f"Parsed Script Arg {script_args}")
 
-    if "alpaca" not in script_args.dataset_train_path:
-        raise NotImplementedError(f"Dataset {script_args.dataset_train_path} not supported")
-
     # 1. load a pretrained model
     model = utils.load_model(
         AutoModelForCausalLM.from_pretrained,
         script_args.policy_model_path,
+        subfolder=script_args.policy_model_subfolder,
         token=hub_token,
         device_map=None,
     )
     model_ref = utils.load_model(
         AutoModelForCausalLM.from_pretrained,
         script_args.policy_model_path,
+        subfolder=script_args.policy_model_subfolder,
         token=hub_token,
         device_map=None,
     )
     tokenizer = utils.load_tokenizer(
         AutoTokenizer.from_pretrained,
         script_args.policy_model_path,
+        subfolder=script_args.policy_model_subfolder,
         token=hub_token,
     )
     utils.check_and_add_pad_token(model, tokenizer)
@@ -309,6 +311,7 @@ def main(args: Optional[List[str]] = None) -> None:
             script_args.proxy_reward_model_path,
             dpo_trainer.accelerator.device,
             reward_model_type=script_args.proxy_reward_model_type,
+            reward_model_subfolder=script_args.proxy_reward_model_subfolder,
             hub_token=hub_token,
         )
         assert script_args.proxy_reward_model_format_json is not None, "reward_model_format_json must be specified"
@@ -320,6 +323,7 @@ def main(args: Optional[List[str]] = None) -> None:
             script_args.gold_reward_model_path,
             dpo_trainer.accelerator.device,
             reward_model_type=script_args.gold_reward_model_type,
+            reward_model_subfolder=script_args.gold_reward_model_subfolder,
             hub_token=hub_token,
         )
         assert script_args.gold_reward_model_format_json is not None, "reward_model_format_json must be specified"

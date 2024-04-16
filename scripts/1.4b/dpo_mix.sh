@@ -1,19 +1,13 @@
 
 set -eu
 
-DATASET_PATHS=(\
- "Mitsuki-Sakamoto/alpaca_farm-reward-model-deberta-v3-large-v2-re-preference-64-nsample-2-16_mix_random_seed_1"\
- "Mitsuki-Sakamoto/alpaca_farm-reward-model-deberta-v3-large-v2-re-preference-64-nsample-2-16_mix_random_seed_2"\
- "Mitsuki-Sakamoto/alpaca_farm-reward-model-deberta-v3-large-v2-re-preference-64-nsample-2-16_mix_random_seed_3"\
-)
 # please change the seed
 seed=1
 # different from 160m
-k=$(($seed - 1))
-DATASET_PATH=${DATASET_PATHS[k]}
-DATASET_NAME="alpaca_instructions-pythia-1.4b_alpaca_farm_instructions_sft_constant_pa-checkpoint-7500"
-POLICY_MODEL="Mitsuki-Sakamoto/pythia-1.4b_alpaca_farm_instructions_sft_constant_pa"
-POLICY_MODEL_SUBFOLDER="checkpoint-7500"
+DATASET_PATH="Mitsuki-Sakamoto/fdpo-preference-dataset"
+DATASET_NAME="1.4b_mix_seed${seed}"
+MODEL_PATH="Mitsuki-Sakamoto/fdpo-models"
+POLICY_MODEL_SUBFOLDER="sft_1.4bm"
 GOLD_REWARD_MODEL="OpenAssistant/reward-model-deberta-v3-large-v2"
 kl_coef=0.1
 TRAIN_BATCH_SIZE=16

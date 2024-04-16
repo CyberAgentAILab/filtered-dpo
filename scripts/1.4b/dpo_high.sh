@@ -5,10 +5,10 @@ set -eu
 seed=1
 
 # different from 160m
-DATASET_PATH="Mitsuki-Sakamoto/alpaca_farm-reward-model-deberta-v3-large-v2-re-preference-64-nsample-16_random"
-DATASET_NAME="alpaca_instructions-pythia-1.4b_alpaca_farm_instructions_sft_constant_pa-checkpoint-7500"
-POLICY_MODEL="Mitsuki-Sakamoto/pythia-1.4b_alpaca_farm_instructions_sft_constant_pa"
-POLICY_MODEL_SUBFOLDER="checkpoint-7500"
+DATASET_PATH="Mitsuki-Sakamoto/fdpo-preference-dataset"
+DATASET_NAME="1.4b_high"
+MODEL_PATH="Mitsuki-Sakamoto/fdpo-models"
+POLICY_MODEL_SUBFOLDER="sft_1.4b"
 GOLD_REWARD_MODEL="OpenAssistant/reward-model-deberta-v3-large-v2"
 kl_coef=0.1
 TRAIN_BATCH_SIZE=16

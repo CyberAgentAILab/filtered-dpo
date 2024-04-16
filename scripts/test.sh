@@ -1,19 +1,14 @@
 
 set -eu
 
-DATASET_PATHS=(\
- "Mitsuki-Sakamoto/alpaca_farm-reward-model-deberta-v3-large-v2-re-preference-64-nsample-2-16_mix_random_seed_1"\
- "Mitsuki-Sakamoto/alpaca_farm-reward-model-deberta-v3-large-v2-re-preference-64-nsample-2-16_mix_random_seed_2"\
- "Mitsuki-Sakamoto/alpaca_farm-reward-model-deberta-v3-large-v2-re-preference-64-nsample-2-16_mix_random_seed_3"\
-)
 # please change the seed
 seed=1
 # different from 1.4b
-k=$(($seed - 1))
-DATASET_PATH=${DATASET_PATHS[k]}
-DATASET_NAME="alpaca_instructions-pythia_160m_alpaca_farm_instructions_sft_constant_pa_seed_1"
-POLICY_MODEL="Mitsuki-Sakamoto/pythia_160m_alpaca_farm_instructions_sft_constant_pa_seed_1"
-PROXY_REWARD_MODEL="Mitsuki-Sakamoto/self_160m_bo16_2_mix_50_rm_pythia-70m_seed_${seed}_fixed"
+DATASET_PATH="Mitsuki-Sakamoto/fdpo-preference-dataset"
+DATASET_NAME="160m_mix_seed${seed}"
+MODEL_PATH="Mitsuki-Sakamoto/fdpo-models"
+POLICY_MODEL_SUBFOLDER="sft_160m"
+PROXY_REWARD_MODEL_SUBFOLDER="rm_70m_seed${seed}"
 GOLD_REWARD_MODEL="OpenAssistant/reward-model-deberta-v3-large-v2"
 kl_coef=0.1
 TRAIN_BATCH_SIZE=1
@@ -26,14 +21,16 @@ OUTPUT_DIR="output/fdpo_test_seed_${seed}"
 FDPO_OPTIONS="\
 --filtered_train_dataset True \
 --filtered_threshold 0.0 \
---proxy_reward_model_path ${PROXY_REWARD_MODEL} \
+--proxy_reward_model_path ${MODEL_PATH} \
+--proxy_reward_model_subfolder ${PROXY_REWARD_MODEL_SUBFOLDER} \
 --proxy_reward_model_format_json instruction_format_json/prompt_response_format/prompter_assistant.json \
 "
 
 
 COMMAND="\
 poetry run python -m filtered_dpo \
---policy_model_path ${POLICY_MODEL} \
+--policy_model_path ${MODEL_PATH} \
+--policy_model_subfolder ${POLICY_MODEL_SUBFOLDER} \
 --prompt_response_format_json instruction_format_json/prompt_response_format/prompter_assistant.json \
 --prompt_format_json instruction_format_json/alpaca_farm_prompt_format/ln.json \
 --dataset_train_path ${DATASET_PATH} \
@@ -68,4 +65,4 @@ poetry run python -m filtered_dpo \
 --report_to tensorboard \
 ${FDPO_OPTIONS}
 "
-echo $COMMAND
+$COMMAND

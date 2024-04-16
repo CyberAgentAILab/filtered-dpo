@@ -1,21 +1,15 @@
 
 set -eu
 
-DATASET_PATHS=(\
- "Mitsuki-Sakamoto/alpaca_farm-reward-model-deberta-v3-large-v2-re-preference-64-nsample-2-16_mix_random_seed_1"\
- "Mitsuki-Sakamoto/alpaca_farm-reward-model-deberta-v3-large-v2-re-preference-64-nsample-2-16_mix_random_seed_2"\
- "Mitsuki-Sakamoto/alpaca_farm-reward-model-deberta-v3-large-v2-re-preference-64-nsample-2-16_mix_random_seed_3"\
-)
 # please change the seed
 seed=1
 # different from 160m
-k=$(($seed - 1))
-DATASET_PATH=${DATASET_PATHS[k]}
-DATASET_NAME="alpaca_instructions-pythia-1.4b_alpaca_farm_instructions_sft_constant_pa-checkpoint-7500"
-POLICY_MODEL="Mitsuki-Sakamoto/pythia-1.4b_alpaca_farm_instructions_sft_constant_pa"
-POLICY_MODEL_SUBFOLDER="checkpoint-7500"
+DATASET_PATH="Mitsuki-Sakamoto/fdpo-preference-dataset"
+DATASET_NAME="1.4b_mix_seed${seed}"
+MODEL_PATH="Mitsuki-Sakamoto/fdpo-models"
+POLICY_MODEL_SUBFOLDER="sft_1.4bm"
+PROXY_REWARD_MODEL_SUBFOLDER="rm_160m_seed${seed}"
 GOLD_REWARD_MODEL="OpenAssistant/reward-model-deberta-v3-large-v2"
-PROXY_REWARD_MODEL="Mitsuki-Sakamoto/self_1.4b_bo16_2_64_mix_50_rm_pythia-160m_seed_${seed}_fixed"
 kl_coef=0.1
 TRAIN_BATCH_SIZE=16
 EVAL_BATCH_SIZE=16
@@ -28,6 +22,7 @@ FDPO_OPTIONS="\
 --filtered_train_dataset True \
 --filtered_threshold 0.0 \
 --proxy_reward_model_path ${PROXY_REWARD_MODEL} \
+--proxy_reward_model_subfolder ${PROXY_REWARD_MODEL_SUBFOLDER} \
 --proxy_reward_model_format_json instruction_format_json/prompt_response_format/prompter_assistant.json \
 "
 
@@ -70,4 +65,4 @@ poetry run python -m filtered_dpo \
 --data_seed $seed \
 ${FDPO_OPTIONS} \
 "
-echo $COMMAND
+$COMMAND
