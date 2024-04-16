@@ -55,7 +55,7 @@ bash scripts/160m/fdpo_mix.sh ${seed}
 ```
 
 
-### Train 1.4m model
+### Train 1.4b model
 
 ```
 # $seed in {1, 2, 3}
