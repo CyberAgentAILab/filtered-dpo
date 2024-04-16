@@ -14,11 +14,21 @@
 
 ## Get Started
 
+To set up your local environment, start by copying the example environment file:
+
 ```shell
 cp .env.example .env
 ```
 
-Edit it according to your environment and apply direnv
+Next, you need to edit the .env file to include your Hugging Face API token. Replace the placeholder value with your actual token:
+
+```
+HF_HUB_TOKEN="your_hugging_face_token_here"
+```
+
+If you do not already have a Hugging Face account or API token, you will need to create an account on Hugging Face and then generate an API token from your account settings.
+
+Once your .env file is set up, apply the configuration to your environment using direnv:
 
 ```shell
 direnv allow .
@@ -31,8 +41,11 @@ poetry install
 
 ### Obtain Access to Datasets and Models
 
-- [Dataset][dataset]
-- [Model][model]
+To use the datasets and models listed below, you must apply for access privileges on their respective Hugging Face repository pages. Please follow the links provided, and on each page, click the “Apply” button to submit your access request. This process is necessary to ensure compliance with the data usage policies and intellectual property rights associated with each resource.
+
+
+- [Dataset][dataset] - Follow this link to apply for access to the dataset.
+- [Model][model] - Follow this link to apply for access to the model.
 
 
 [dataset]: https://huggingface.co/datasets/Mitsuki-Sakamoto/fdpo-preference-dataset
@@ -62,6 +75,9 @@ bash scripts/160m/fdpo_mix.sh ${seed}
 seed=1
 bash scripts/1.4b/fdpo_mix.sh ${seed}
 ```
+
+## Checking Experimental Results
+The verification of experiment logs and creation of reports follow the standard of [Transformers](https://huggingface.co/docs/transformers/v4.39.3/en/main_classes/callback#callbacks) .
 
 
 ## Reference
