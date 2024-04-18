@@ -54,13 +54,13 @@ To use the datasets and models listed below, you must apply for access privilege
 ## Usage
 
 ### Test training
-
+Execution time of about an hour in the notebook.
 ```
 bash scripts/test.sh 
 ```
 
 ### Train 160m model
-
+Execution time of several hours using A100 80G
 ```
 # $seed in {1, 2, 3}
 seed=1
@@ -69,7 +69,7 @@ bash scripts/160m/fdpo_mix.sh ${seed}
 
 
 ### Train 1.4b model
-
+Execution time of about a day using A100 80G
 ```
 # $seed in {1, 2, 3}
 seed=1
