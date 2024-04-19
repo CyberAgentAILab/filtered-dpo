@@ -80,9 +80,7 @@ def _calc_kl_for_ref_model_batch(
     pad_value,
     label_pad_token_id,
 ):
-    # prompt responceを input_idsとattention_maskに変換, logprobを計算するためのlabelを作成 labelはpromptの部分をmaskしたinput_ids
-    # 要件: batch内でinput_idsとattention_maskの長さが一定であること
-    # 実現方法: paddingを右側に加える, input_idsにはpad_token_id, attention_maskにはlabel_pad_token_idを使う
+    # Convert the prompt response to input_ids and attention_mask, create labels for calculating logprob. The label is the input_ids masked at the prompt part.
     (input_ids_padded, attention_mask_padded, labels) = __prepare_inputs_padding(
         prompts_batch, responses_batch, tokenizer, pad_value, label_pad_token_id
     )
