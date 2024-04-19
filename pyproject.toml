@@ -2,7 +2,7 @@
 name = "filtered-dpo"
 version = "0.1.0"
 description = ""
-authors = ["MitsukiSakamoto <mitssuki.sakamoto@gmail.com>"]
+authors = ["MitsukiSakamoto <sakamoto_mitsuki@cyberagent.co.jp>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
