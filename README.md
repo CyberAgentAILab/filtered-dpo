@@ -81,4 +81,17 @@ The verification of experiment logs and creation of reports follow the standard 
 
 
 ## Reference
-Our paper is currently under review. The reference will be updated once the paper is published on arXiv.
+
+Morimura, T., Sakamoto, M., Jinnai, Y., Abe, K., and Ariu, K., Filtered Direct Preference Optimization. arXiv preprint arXiv:2404.13846, 2024.
+
+Bibtex:
+```
+@misc{morimura2024filtered,
+      title={Filtered Direct Preference Optimization}, 
+      author={Tetsuro Morimura and Mitsuki Sakamoto and Yuu Jinnai and Kenshi Abe and Kaito Ariu},
+      year={2024},
+      eprint={2404.13846},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+```
