@@ -82,7 +82,7 @@ The verification of experiment logs and creation of reports follow the standard 
 
 ## Reference
 
-Morimura, T., Sakamoto, M., Jinnai, Y., Abe, K., and Ariu, K., Filtered Direct Preference Optimization. arXiv preprint arXiv:2404.13846, 2024.
+[Morimura, T., Sakamoto, M., Jinnai, Y., Abe, K., and Ariu, K., Filtered Direct Preference Optimization. arXiv preprint arXiv:2404.13846, 2024.](https://arxiv.org/abs/2404.13846)
 
 Bibtex:
 ```
