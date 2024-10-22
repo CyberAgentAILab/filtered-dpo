@@ -82,16 +82,15 @@ The verification of experiment logs and creation of reports follow the standard 
 
 ## Reference
 
-[Morimura, T., Sakamoto, M., Jinnai, Y., Abe, K., and Ariu, K., Filtered Direct Preference Optimization. arXiv preprint arXiv:2404.13846, 2024.](https://arxiv.org/abs/2404.13846)
+[Morimura, T., Sakamoto, M., Jinnai, Y., Abe, K., and Ariu, K., Filtered Direct Preference Optimization. EMNLP, 2024.](https://arxiv.org/abs/2404.13846)
 
 Bibtex:
 ```
-@misc{morimura2024filtered,
-      title={Filtered Direct Preference Optimization}, 
-      author={Tetsuro Morimura and Mitsuki Sakamoto and Yuu Jinnai and Kenshi Abe and Kaito Ariu},
+@inproceedings{morimura2024filtered,
+      title={Filtered Direct Preference Optimization},
+      author={Anonymous},
+      booktitle={The 2024 Conference on Empirical Methods in Natural Language Processing},
       year={2024},
-      eprint={2404.13846},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG}
+      url={https://openreview.net/forum?id=mcPo6etduJ}
 }
 ```
