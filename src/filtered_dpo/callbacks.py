@@ -163,7 +163,12 @@ class FilterTrainDatasetCallback(TrainerCallback):
         self.filtered_dataset = self.filtered_dataset.add_column("filtered_epoch", [-1] * len(self.filtered_dataset))
         self.base_run_name = copy.deepcopy(dpo_trainer.args.run_name)
         dpo_trainer.args.run_name = f"{self.base_run_name}_epoch_{self.epoch}"
-
+        if filtered_start_epoch == 0:
+            logger.info(f"filtering dataset on epoch {self.epoch}")
+            self.filter_dataset()
+            logger.info(f"save filtered dataset on epoch {self.epoch} to {dpo_trainer.args.output_dir}")
+            self.filtered_dataset.save_to_disk(f"{dpo_trainer.args.output_dir}/filtered_dataset_epoch_{self.epoch}") 
+            
     def filter_dataset(self):
         logger.info("filtering dataset...")
         logger.info(f"train_dataset size: {len(self.dpo_trainer.train_dataset)}")
@@ -254,15 +259,6 @@ class FilterTrainDatasetCallback(TrainerCallback):
 
     def on_epoch_begin(self, args, state, control, model=None, **kwargs):
         self._load_state(state)
-        logger.info(f"filtering dataset on epoch {state.epoch}")
-        self.dpo_trainer.args.run_name = f"{self.base_run_name}_epoch_{self.epoch}"
-        args.run_name = self.dpo_trainer.args.run_name
-        logger.info(f"run_name: {args.run_name}")
-        if self.epoch >= self.filtered_start_epoch:
-            logger.info(f"filtering dataset on epoch {self.epoch}")
-            self.filter_dataset()
-            logger.info(f"save filtered dataset on epoch {self.epoch} to {args.output_dir}")
-            self.filtered_dataset.save_to_disk(f"{args.output_dir}/filtered_dataset_epoch_{self.epoch}")
         if self.epoch > 0:
             control.should_training_stop = False
             control.should_epoch_stop = False
@@ -277,6 +273,11 @@ class FilterTrainDatasetCallback(TrainerCallback):
     ):
         self.epoch += 1
         self._save_state(state)
+        if self.epoch >= self.filtered_start_epoch:
+            logger.info(f"filtering dataset on epoch {self.epoch}")
+            self.filter_dataset()
+            logger.info(f"save filtered dataset on epoch {self.epoch} to {args.output_dir}")
+            self.filtered_dataset.save_to_disk(f"{args.output_dir}/filtered_dataset_epoch_{self.epoch}")
         return super().on_epoch_end(args, state, control, **kwargs)
 
     def on_step_end(
