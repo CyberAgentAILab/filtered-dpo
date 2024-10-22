@@ -3,7 +3,6 @@ import os
 from dataclasses import dataclass, field
 from typing import List, Literal, Optional
 
-import numpy as np
 import torch
 import transformers
 from accelerate import Accelerator
@@ -165,7 +164,7 @@ def main(args: Optional[List[str]] = None) -> None:
     training_args = parser.parse_args_into_dataclasses()[0]
     logging.basicConfig(level=getattr(logging, training_args.log_level.upper()))
     script_args = training_args
-    hub_token = training_args.hub_token if training_args.hub_token is not None else os.environ.get("HF_HUB_TOKEN")
+    hub_token = training_args.hub_token if training_args.hub_token is not None else os.environ.get("HF_TOKEN")
     del training_args.hub_token
     logger.info(f"Parsed Training Args {training_args}")
     logger.info(f"Parsed Script Arg {script_args}")
