@@ -76,9 +76,11 @@ seed=1
 bash scripts/1.4b/fdpo_mix.sh ${seed}
 ```
 
+
 ## Checking Experimental Results
 The verification of experiment logs and creation of reports follow the standard of [Transformers](https://huggingface.co/docs/transformers/v4.39.3/en/main_classes/callback#callbacks) .
 
+Also, a notebook for reproducing Figure 6 in our paper is provided in [notebook](notebook/fDPO-propostion.ipynb)
 
 ## Reference
 

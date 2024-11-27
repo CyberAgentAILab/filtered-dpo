@@ -15,7 +15,10 @@ tensorboard = "^2.16.2"
 
 [tool.poetry.group.dev.dependencies]
 isort = "^5.13.2"
-black = "^24.3.0"
+black = {extras = ["jupyter"], version = "^24.10.0"}
+jupyter = "^1.1.1"
+matplotlib = "^3.9.2"
+seaborn = "^0.13.2"
 
 [build-system]
 requires = ["poetry-core"]
