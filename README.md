@@ -88,11 +88,22 @@ Also, a notebook for reproducing Figure 6 in our paper is provided in [notebook]
 
 Bibtex:
 ```
-@inproceedings{morimura2024filtered,
-      title={Filtered Direct Preference Optimization},
-      author={Anonymous},
-      booktitle={The 2024 Conference on Empirical Methods in Natural Language Processing},
-      year={2024},
-      url={https://openreview.net/forum?id=mcPo6etduJ}
+@inproceedings{morimura-etal-2024-filtered,
+    title = "Filtered Direct Preference Optimization",
+    author = "Morimura, Tetsuro  and
+      Sakamoto, Mitsuki  and
+      Jinnai, Yuu  and
+      Abe, Kenshi  and
+      Ariu, Kaito",
+    editor = "Al-Onaizan, Yaser  and
+      Bansal, Mohit  and
+      Chen, Yun-Nung",
+    booktitle = "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2024",
+    address = "Miami, Florida, USA",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.emnlp-main.1266",
+    pages = "22729--22770",
 }
 ```
